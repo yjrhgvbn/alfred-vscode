@@ -63,6 +63,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>DF2172F7-FDC4-4069-BB3F-B8B974E11FA1</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Open project path(s) in terminal</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
@@ -75,19 +85,6 @@
 	<string>Visual Studio Code</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>path</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.browseinterminal</string>
-			<key>uid</key>
-			<string>DF2172F7-FDC4-4069-BB3F-B8B974E11FA1</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -136,19 +133,6 @@
 			<string>42AE18CA-5A3B-4F9D-80CF-78DB28314AD2</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>path</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
-			<key>uid</key>
-			<string>41AD1A26-6573-4ABB-9CF1-FC2A08153EC0</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -242,6 +226,32 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>path</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.browseinterminal</string>
+			<key>uid</key>
+			<string>DF2172F7-FDC4-4069-BB3F-B8B974E11FA1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>path</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>41AD1A26-6573-4ABB-9CF1-FC2A08153EC0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>anchorfields</key>
 				<true/>
 				<key>argumenttrimmode</key>
@@ -327,37 +337,37 @@ end run</string>
 		<key>41AD1A26-6573-4ABB-9CF1-FC2A08153EC0</key>
 		<dict>
 			<key>xpos</key>
-			<real>590</real>
+			<real>420</real>
 			<key>ypos</key>
-			<real>180</real>
+			<real>185</real>
 		</dict>
 		<key>42AE18CA-5A3B-4F9D-80CF-78DB28314AD2</key>
 		<dict>
 			<key>xpos</key>
-			<real>105</real>
+			<real>70</real>
 			<key>ypos</key>
-			<real>120</real>
+			<real>40</real>
 		</dict>
 		<key>9AD64156-AE32-474F-9656-CDAA9DF22241</key>
 		<dict>
 			<key>xpos</key>
-			<real>110</real>
+			<real>70</real>
 			<key>ypos</key>
-			<real>345</real>
+			<real>340</real>
 		</dict>
 		<key>C3BF6BBB-139B-4E5E-BD92-3E76F7AA79EA</key>
 		<dict>
 			<key>xpos</key>
-			<real>595</real>
+			<real>580</real>
 			<key>ypos</key>
-			<real>340</real>
+			<real>185</real>
 		</dict>
 		<key>DF2172F7-FDC4-4069-BB3F-B8B974E11FA1</key>
 		<dict>
 			<key>xpos</key>
-			<real>590</real>
+			<real>260</real>
 			<key>ypos</key>
-			<real>40</real>
+			<real>185</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>

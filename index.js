@@ -40,7 +40,7 @@ async function getHistory(file) {
   if (projects) {
     matchedProjects = matchedProjects.concat(
       utils
-        .inputMatchesData(projects, alfy.input, ["name", "group"])
+        .inputMatchesData(projects, alfy.input, ["name", "tag"])
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((project) => ({
           title: utils.getTitle(project),

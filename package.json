@@ -1,13 +1,14 @@
 {
   "name": "@yjrhgvbn/alfred-vscode",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Alfred workflow that allows you to browse and open Visual Studio Code (Insiders) projects",
   "repository": "yjrhgvbn/alfred-vscode",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "postinstall": "alfy-init",
-    "preuninstall": "alfy-cleanup"
+    "preuninstall": "alfy-cleanup",
+    "publish": "npm publish --access public"
   },
   "keywords": [
     "alfred",

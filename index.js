@@ -1,6 +1,7 @@
 import alfy from "alfy";
 import utils from "./lib/utils.js";
 import { GetHistoryFiles } from "./lib/history.js";
+import fs from "fs";
 
 async function getProjects(file) {
   if (file) {
@@ -14,10 +15,28 @@ async function getProjects(file) {
 
 async function getHistory(file) {
   if (file) {
-    const res = await GetHistoryFiles(file);
+    const files = (await GetHistoryFiles(file)) || [];
+    const filesPath = files.map((file) => file.rootPath);
+    const existsCall = filesPath.map((file) => checkFileExists(file));
+    const exists = await Promise.all(existsCall);
+    const res = files.filter((file, index) => exists[index]);
     return res || [];
   }
   return [];
+}
+
+// 检查文件是否存在
+function checkFileExists(file) {
+  if (!file || typeof file !== "string" || file[0] !== "/") return true;
+  return new Promise((resolve, reject) => {
+    fs.access(file, fs.constants.F_OK, (err) => {
+      if (err) {
+        resolve(false);
+      } else {
+        resolve(true);
+      }
+    });
+  });
 }
 
 (async () => {

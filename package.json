@@ -1,6 +1,6 @@
 {
   "name": "@yjrhgvbn/alfred-vscode",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Alfred workflow that allows you to browse and open Visual Studio Code (Insiders) projects",
   "repository": "yjrhgvbn/alfred-vscode",
   "main": "index.js",

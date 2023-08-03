@@ -14,12 +14,16 @@ async function getProjects(file) {
 }
 
 async function getHistory(file) {
+  const showRemote = process.argv[3] === "-r";
   if (file) {
     const files = (await GetHistoryFiles(file)) || [];
-    const filesPath = files.map((file) => file.rootPath);
+    const filterFiles = files.filter((file) =>
+      showRemote ? file.rootPath[0] !== "/" : file.rootPath[0] === "/"
+    );
+    const filesPath = filterFiles.map((file) => file.rootPath);
     const existsCall = filesPath.map((file) => checkFileExists(file));
     const exists = await Promise.all(existsCall);
-    const res = files.filter((file, index) => exists[index]);
+    const res = filterFiles.filter((file, index) => exists[index]);
     return res || [];
   }
   return [];

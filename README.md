@@ -16,7 +16,7 @@
 可选：
 
 - [Visual Studio Code Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager) - 配置的项目会优先展示在历史项目前面
-- [code](https://code.visualstudio.com/docs/setup/mac) - vscode的命令工具，用于支持打开远程文件
+- [code](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) - vscode的命令工具，用于支持打开远程文件
   
 ## 安装
 

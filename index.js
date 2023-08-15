@@ -8,7 +8,10 @@ async function getProjects(file) {
     const projects = await utils.fetch(file, {
       transform: utils.parseProjects,
     });
-    return projects;
+    const showRemote = process.argv[3] === "-r";
+    return projects.filter((file) =>
+      showRemote ? file.rootPath[0] !== "/" : file.rootPath[0] === "/"
+    );
   }
   return [];
 }

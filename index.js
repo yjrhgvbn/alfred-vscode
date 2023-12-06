@@ -27,9 +27,30 @@ async function getHistory(file) {
     const existsCall = filesPath.map((file) => checkFileExists(file));
     const exists = await Promise.all(existsCall);
     const res = filterFiles.filter((file, index) => exists[index]);
+    duplicateName(res)
     return res || [];
   }
   return [];
+}
+
+// 重复名称处理
+function duplicateName(files) {
+  const fileNameMap = new Map()
+  files.forEach((file,index) => {
+    fileNameMap.set(file.name, fileNameMap.has(file.name) ? fileNameMap.get(file.name).concat(index) : [index])
+  });
+  const duplicateNameList = [...fileNameMap].filter(([key, value]) => value.length > 1)
+  if(!duplicateNameList) return files
+  duplicateNameList.forEach(([key, value]) => {
+    value.forEach((index, i) => {
+      files[index].name = `${files[index].name} (${getCurrentParentDir(files[index].rootPath)})`
+    })
+  })
+  return files
+}
+
+function getCurrentParentDir(path) {
+  return path.split("/").slice(-2,-1);
 }
 
 // 检查文件是否存在

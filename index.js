@@ -26,31 +26,40 @@ async function getHistory(file) {
     const filesPath = filterFiles.map((file) => file.rootPath);
     const existsCall = filesPath.map((file) => checkFileExists(file));
     const exists = await Promise.all(existsCall);
-    const res = filterFiles.filter((file, index) => exists[index]);
-    duplicateName(res)
+    const res = duplicateName(
+      filterFiles.filter((file, index) => exists[index])
+    );
     return res || [];
   }
   return [];
 }
 
-// 重复名称处理
+/** 重复名称处理, 重复会添加一个tag */
 function duplicateName(files) {
-  const fileNameMap = new Map()
-  files.forEach((file,index) => {
-    fileNameMap.set(file.name, fileNameMap.has(file.name) ? fileNameMap.get(file.name).concat(index) : [index])
+  if (!Array.isArray(files)) return files;
+  const fileNameMap = new Map();
+  files.forEach((file, index) => {
+    fileNameMap.set(
+      file.name,
+      fileNameMap.has(file.name)
+        ? fileNameMap.get(file.name).concat(index)
+        : [index]
+    );
   });
-  const duplicateNameList = [...fileNameMap].filter(([key, value]) => value.length > 1)
-  if(!duplicateNameList) return files
+  const duplicateNameList = [...fileNameMap].filter(
+    ([key, value]) => value.length > 1
+  );
+  if (!duplicateNameList) return files;
   duplicateNameList.forEach(([key, value]) => {
     value.forEach((index, i) => {
-      files[index].name = `${files[index].name} (${getCurrentParentDir(files[index].rootPath)})`
-    })
-  })
-  return files
+      files[index].tag = getCurrentParentDir(files[index].rootPath);
+    });
+  });
+  return files;
 }
 
 function getCurrentParentDir(path) {
-  return path.split("/").slice(-2,-1);
+  return path.split("/").slice(-2, -1);
 }
 
 // 检查文件是否存在
@@ -70,7 +79,8 @@ function checkFileExists(file) {
 (async () => {
   const [file, historyFile] = utils.getProjectFilePath();
   let matchedProjects = [];
-  if (!alfy.input) {
+  const input = alfy.input;
+  if (!input) {
     matchedProjects.push({
       title: "Open with Visual Studio Code",
       subtitle: "Open Finder folder or selection in Visual Studio Code",
@@ -87,7 +97,7 @@ function checkFileExists(file) {
   if (projects) {
     matchedProjects = matchedProjects.concat(
       utils
-        .inputMatchesData(projects, alfy.input, ["name", "tag"])
+        .inputMatchesData(projects, input, ["name", "tag"])
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((project) => ({
           title: utils.getTitle(project),
@@ -104,9 +114,9 @@ function checkFileExists(file) {
   if (history) {
     matchedProjects = matchedProjects.concat(
       utils
-        .inputMatchesData(history, alfy.input, ["name", "rootPath"])
+        .inputMatchesData(history, input, ["name", "rootPath"])
         .map((project) => ({
-          title: project.name,
+          title: project.name + (project.tag ? ` (${project.tag})` : ""),
           subtitle: project.rootPath,
           icon: {
             type: "fileicon",
